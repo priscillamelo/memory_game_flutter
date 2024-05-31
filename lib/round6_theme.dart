@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Round6Theme {
   static const int _round6PrimaryValue = 0xFFFF1D87;
-  static const int _round6Backgound = 0xFF121212;
 
   static const MaterialColor color = MaterialColor(
     _round6PrimaryValue,
@@ -18,6 +18,27 @@ class Round6Theme {
       800: Color(0xFFAD1457),
       900: Color(0xFF880E4F),
     },
+  );
+
+  static const Color _round6Backgound = Color(0xFF121212);
+
+  static ThemeData themeData = ThemeData(
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: _round6Backgound,
+    primarySwatch: color,
+    primaryColor: color,
+    textTheme: GoogleFonts.wendyOneTextTheme(
+      ThemeData.dark().textTheme,
+    ),
+    appBarTheme: ThemeData.dark().appBarTheme.copyWith(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          titleTextStyle: GoogleFonts.wendyOne(fontSize: 25),
+          centerTitle: true,
+        ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: outlineButtonStyle(),
+    ),
   );
 
   static ButtonStyle outlineButtonStyle({
