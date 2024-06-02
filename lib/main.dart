@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/home_page.dart';
-import 'round6_theme.dart';
+import '../values/theme/round6_theme.dart';
 
 void main() {
   runApp(const MyApp());
