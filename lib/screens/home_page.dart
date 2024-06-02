@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
 import '../values/theme/round6_theme.dart';
 import '../widgets/button.dart';
 import '../widgets/card_recordes.dart';
 import '../widgets/logo_widget.dart';
+import 'nivel_page.dart';
+import 'recordes_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,27 +25,25 @@ class HomePage extends StatelessWidget {
               Button(
                   title: 'Modo Normal',
                   colorButton: Colors.white,
-                  actionButton:
-                      () {} /* Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        RecordesPage(modo: Modo.normal),
-                  ),
-                ), */
-                  ),
+                  actionButton: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const NivelPage(modo: Modo.normal),
+                      ),
+                    );
+                  }),
               Button(
                   title: 'Modo Round 6',
                   colorButton: Round6Theme.colorPrimary,
-                  actionButton:
-                      () {} /* Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        RecordesPage(modo: Modo.normal),
-                  ),
-                ), */
-                  ),
+                  actionButton: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const NivelPage(modo: Modo.round6),
+                        ),
+                      )),
               const SizedBox(height: 60),
               const CardRecordes(),
             ],

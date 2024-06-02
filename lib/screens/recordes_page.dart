@@ -16,7 +16,11 @@ class RecordesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Recordes'),
+        centerTitle: false,
+        title: const Text(
+          'Recordes',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),

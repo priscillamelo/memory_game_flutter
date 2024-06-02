@@ -18,7 +18,7 @@ class Button extends StatelessWidget {
       padding: const EdgeInsets.only(top: 24),
       child: OutlinedButton(
         style: Round6Theme.outlineButtonStyle(colorButton: colorButton),
-        onPressed: actionButton(),
+        onPressed: () => actionButton(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
