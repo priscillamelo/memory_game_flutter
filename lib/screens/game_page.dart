@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:memory_game_flutter/values/theme/round6_theme.dart';
+import 'package:memory_game_flutter/widgets/feedback_game_widget.dart';
 
 import '../constants.dart';
 import '../widgets/card_game_widget.dart';

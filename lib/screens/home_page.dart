@@ -6,7 +6,6 @@ import '../widgets/button.dart';
 import '../widgets/card_recordes.dart';
 import '../widgets/logo_widget.dart';
 import 'nivel_page.dart';
-import 'recordes_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

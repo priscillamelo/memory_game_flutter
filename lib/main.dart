@@ -12,10 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Round 6 Memory',
-      debugShowCheckedModeBanner: false,
-      theme: Round6Theme.themeData,
-      home: const HomePage(),
-    );
+        title: 'Round 6 Memory',
+        debugShowCheckedModeBanner: false,
+        theme: Round6Theme.themeData,
+        home: const HomePage());
   }
 }
