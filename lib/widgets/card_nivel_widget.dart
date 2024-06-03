@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory_game_flutter/screens/game_page.dart';
 
 import '../constants.dart';
 import '../values/theme/round6_theme.dart';
@@ -12,7 +13,15 @@ class CardNivelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: const BorderRadius.all(Radius.circular(18)),
-      onTap: () => {},
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GamePage(
+            modo: modo,
+            nivel: nivel,
+          ),
+        ),
+      ),
       child: Container(
         width: 90,
         height: 90,

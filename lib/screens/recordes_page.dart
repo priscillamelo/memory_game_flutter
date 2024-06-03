@@ -12,14 +12,22 @@ class RecordesPage extends StatelessWidget {
     return modo == Modo.normal ? 'Normal' : 'Round 6';
   }
 
+  get getColorTheme {
+    if (modo == Modo.normal) {
+      return Colors.white;
+    }
+    return Round6Theme.colorPrimary;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: getColorTheme),
         centerTitle: false,
-        title: const Text(
+        title: Text(
           'Recordes',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: getColorTheme),
         ),
       ),
       body: Padding(
@@ -32,8 +40,7 @@ class RecordesPage extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Modo $getModo',
-                        style: const TextStyle(
-                            fontSize: 28, color: Round6Theme.colorPrimary),
+                        style: TextStyle(fontSize: 28, color: getColorTheme),
                       ),
                     ),
                   )
