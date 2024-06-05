@@ -15,37 +15,37 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(24),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const LogoWidget(),
-              Button(
-                  title: 'Modo Normal',
-                  colorButton: Colors.white,
-                  actionButton: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const NivelPage(modo: Modo.normal),
-                      ),
-                    );
-                  }),
-              Button(
-                  title: 'Modo Round 6',
-                  colorButton: Round6Theme.colorPrimary,
-                  actionButton: () => Navigator.push(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const LogoWidget(),
+                Button(
+                    title: 'Modo Normal',
+                    colorButton: Colors.white,
+                    actionButton: () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              const NivelPage(modo: Modo.round6),
+                              const NivelPage(modo: Modo.normal),
                         ),
-                      )),
-              const SizedBox(height: 60),
-              const CardRecordes(),
-            ],
+                      );
+                    }),
+                Button(
+                    title: 'Modo Round 6',
+                    colorButton: Round6Theme.colorPrimary,
+                    actionButton: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const NivelPage(modo: Modo.round6),
+                          ),
+                        )),
+                const SizedBox(height: 60),
+                const CardRecordes(),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,9 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:memory_game_flutter/values/theme/round6_theme.dart';
-import 'package:memory_game_flutter/widgets/feedback_game_widget.dart';
 
+import '../values/theme/round6_theme.dart';
 import '../constants.dart';
 import '../widgets/card_game_widget.dart';
 
@@ -15,7 +14,7 @@ class GamePage extends StatelessWidget {
   get getAxisCount {
     if (nivel <= 10) {
       return 2;
-    } else if (nivel > 10 && nivel <= 20) {
+    } else if (nivel > 10 && (nivel % 3 == 0)) {
       return 3;
     } else {
       return 4;
@@ -33,9 +32,10 @@ class GamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 64,
         automaticallyImplyLeading: false,
-        centerTitle: true,
         title: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
@@ -53,8 +53,8 @@ class GamePage extends StatelessWidget {
             ),
             Image.asset(
               'images/logo_host.png',
-              width: 36,
-              height: 64,
+              width: 60,
+              height: 50,
             ),
             TextButton(
               onPressed: () {
@@ -72,7 +72,7 @@ class GamePage extends StatelessWidget {
         crossAxisCount: getAxisCount,
         mainAxisSpacing: 15,
         crossAxisSpacing: 15,
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 56),
         children: List.generate(
           nivel,
           (index) => CardGameWidget(modo: modo, opcao: Random().nextInt(14)),
