@@ -75,7 +75,10 @@ class GamePage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 56),
         children: List.generate(
           nivel,
-          (index) => CardGameWidget(modo: modo, opcao: Random().nextInt(14)),
+          (index) => CardGameWidget(
+            modo: modo,
+            opcao: Random().nextInt(15),
+          ),
         ),
       ),
     );
