@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:memory_game_flutter/values/theme/round6_theme.dart';
 
 import '../constants.dart';
+import '../models/game_options.dart';
 
 class CardGameWidget extends StatefulWidget {
   final Modo modo;
-  final int opcao;
-  const CardGameWidget({super.key, required this.modo, required this.opcao});
+  final GameOptions gameOpcao;
+  const CardGameWidget(
+      {super.key, required this.modo, required this.gameOpcao});
 
   @override
   State<CardGameWidget> createState() => _CardGameWidgetState();
@@ -42,7 +44,7 @@ class _CardGameWidgetState extends State<CardGameWidget>
 
   AssetImage getImageCard(double angulo) {
     if (angulo > (0.5 * pi)) {
-      return AssetImage('images/${widget.opcao.toString()}.png');
+      return AssetImage('images/${widget.gameOpcao.option.toString()}.png');
     } else {
       return widget.modo == Modo.normal
           ? const AssetImage('images/card_normal.png')

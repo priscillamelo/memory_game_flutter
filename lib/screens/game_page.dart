@@ -1,86 +1,50 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
-import '../values/theme/round6_theme.dart';
 import '../constants.dart';
+import '../controllers/game_controller.dart';
+import '../game_settings.dart';
+import '../models/game_options.dart';
+import '../models/game_play.dart';
 import '../widgets/card_game_widget.dart';
+import '../widgets/feedback_game_widget.dart';
+import '../widgets/game_score.dart';
 
 class GamePage extends StatelessWidget {
-  final Modo modo;
-  final int nivel;
-  const GamePage({super.key, required this.modo, required this.nivel});
-
-  get getAxisCount {
-    if (nivel <= 10) {
-      return 2;
-    } else if (nivel > 10 && (nivel % 3 == 0)) {
-      return 3;
-    } else {
-      return 4;
-    }
-  }
-
-  get getColorTheme {
-    if (modo == Modo.normal) {
-      return Colors.white;
-    }
-    return Round6Theme.colorPrimary;
-  }
+  final GamePlay gamePlay;
+  const GamePage({super.key, required this.gamePlay});
 
   @override
   Widget build(BuildContext context) {
+    final controllerProvider = Provider.of<GameController>(context);
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 64,
-        automaticallyImplyLeading: false,
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Icon(
-                    modo == Modo.normal
-                        ? Icons.touch_app_rounded
-                        : Icons.my_location,
-                    color: getColorTheme),
-                Text(
-                  '18',
-                  style: TextStyle(fontSize: 25, color: getColorTheme),
-                ),
-              ],
-            ),
-            Image.asset(
-              'images/logo_host.png',
-              width: 60,
-              height: 50,
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                'Sair',
-                style: TextStyle(color: getColorTheme, fontSize: 18),
-              ),
-            )
-          ],
-        ),
-      ),
-      body: GridView.count(
-        crossAxisCount: getAxisCount,
-        mainAxisSpacing: 15,
-        crossAxisSpacing: 15,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 56),
-        children: List.generate(
-          nivel,
-          (index) => CardGameWidget(
-            modo: modo,
-            opcao: Random().nextInt(15),
+        appBar: AppBar(
+          toolbarHeight: 64,
+          automaticallyImplyLeading: false,
+          title: GameScore(
+            modo: gamePlay.modo,
           ),
         ),
-      ),
-    );
+        body: Observer(builder: (_) {
+          if (controllerProvider.winner) {
+            return const FeedbackGameWidget(resultado: Resultado.aprovado);
+          } else if (controllerProvider.loser) {
+            return const FeedbackGameWidget(resultado: Resultado.eliminado);
+          } else {
+            return GridView.count(
+              crossAxisCount: GameSettings.gameBoardAxisCount(gamePlay.nivel),
+              mainAxisSpacing: 15,
+              crossAxisSpacing: 15,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 56),
+              children: controllerProvider.gameCards
+                  .map((GameOptions go) =>
+                      CardGameWidget(modo: gamePlay.modo, gameOpcao: go))
+                  .toList(),
+            );
+          }
+        }));
   }
 }

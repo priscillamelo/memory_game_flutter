@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:memory_game_flutter/values/theme/round6_theme.dart';
 
 import '../constants.dart';
+import '../game_settings.dart';
+import '../models/game_play.dart';
 import '../widgets/card_nivel_widget.dart';
 
 class NivelPage extends StatelessWidget {
@@ -17,6 +19,12 @@ class NivelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final niveis = GameSettings.niveis
+        .map(
+          (nivel) =>
+              CardNivelWidget(gamePlay: GamePlay(modo: modo, nivel: nivel)),
+        )
+        .toList();
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: getColorTheme),
@@ -33,17 +41,7 @@ class NivelPage extends StatelessWidget {
           mainAxisSpacing: 24,
           crossAxisSpacing: 24,
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          children: [
-            CardNivelWidget(modo: modo, nivel: 6),
-            CardNivelWidget(modo: modo, nivel: 8),
-            CardNivelWidget(modo: modo, nivel: 10),
-            CardNivelWidget(modo: modo, nivel: 12),
-            CardNivelWidget(modo: modo, nivel: 16),
-            CardNivelWidget(modo: modo, nivel: 18),
-            CardNivelWidget(modo: modo, nivel: 20),
-            CardNivelWidget(modo: modo, nivel: 24),
-            CardNivelWidget(modo: modo, nivel: 28),
-          ],
+          children: niveis,
         ),
       ),
     );
