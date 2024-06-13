@@ -31,6 +31,7 @@ class GameScore extends StatelessWidget {
                     ? Icons.touch_app_rounded
                     : Icons.my_location,
                 color: getColorTheme),
+            const SizedBox(width: 8),
             Observer(
               builder: (_) => Text(
                 controllerProvider.tentativa.toString(),

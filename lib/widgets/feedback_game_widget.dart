@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:memory_game_flutter/widgets/button.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
+import '../controllers/game_controller.dart';
 
 class FeedbackGameWidget extends StatelessWidget {
   final Resultado resultado;
@@ -13,6 +15,7 @@ class FeedbackGameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gameController = context.read<GameController>();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
       child: Column(
@@ -33,11 +36,11 @@ class FeedbackGameWidget extends StatelessWidget {
               ? Button(
                   title: 'Próximo Nível',
                   colorButton: Colors.white,
-                  actionButton: () {})
+                  actionButton: () => gameController.nextLevel())
               : Button(
                   title: 'Tentar Novamente',
                   colorButton: Colors.white,
-                  actionButton: () {}),
+                  actionButton: () => gameController.restartGame()),
         ],
       ),
     );

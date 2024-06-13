@@ -1,10 +1,10 @@
 class GameOptions {
-  int option;
+  int numberCard;
   bool matched;
   bool selected;
 
   GameOptions({
-    required this.option,
+    required this.numberCard,
     required this.matched,
     required this.selected,
   });

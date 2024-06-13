@@ -1,10 +1,11 @@
-import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:memory_game_flutter/values/theme/round6_theme.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
+import '../controllers/game_controller.dart';
 import '../models/game_options.dart';
 
 class CardGameWidget extends StatefulWidget {
@@ -36,15 +37,24 @@ class _CardGameWidgetState extends State<CardGameWidget>
   }
 
   flipCard() {
-    if (!animationController.isAnimating) {
+    final gameController = context.read<GameController>();
+
+    if (!animationController.isAnimating &&
+        !widget.gameOpcao.matched &&
+        !widget.gameOpcao.selected &&
+        !gameController.jogadaCompleta) {
       animationController.forward();
-      Timer(const Duration(seconds: 2), () => animationController.reverse());
+      gameController.cardSelected(widget.gameOpcao, resetCard);
     }
+  }
+
+  resetCard() {
+    animationController.reverse();
   }
 
   AssetImage getImageCard(double angulo) {
     if (angulo > (0.5 * pi)) {
-      return AssetImage('images/${widget.gameOpcao.option.toString()}.png');
+      return AssetImage('images/${widget.gameOpcao.numberCard.toString()}.png');
     } else {
       return widget.modo == Modo.normal
           ? const AssetImage('images/card_normal.png')
